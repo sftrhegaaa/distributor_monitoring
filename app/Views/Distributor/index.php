@@ -63,7 +63,7 @@
                 <?php $no = 1; ?>
                 <?php foreach ($distributors as $distributor): ?>
                     <tr>
-                        <td><?= $no++; ?></td>
+                        <td><?= $no++; ?>.</td>
                         <td><?= $distributor['nama_distributor']; ?></td>
                         <!-- <td><?= $distributor['kode_region']; ?></td> -->
                         <td><?= $distributor['nama_owner']; ?></td>
@@ -99,6 +99,7 @@
                                             </p>
                                             <p><strong>Region:</strong> <?= $distributor['kode_region']; ?></p>
                                             <p><strong>Nama Region:</strong> <?= $distributor['nama_region']; ?></p>
+                                            <p><strong>Area:</strong> <?= $distributor['area']; ?></p>
                                             <p><strong>Owner:</strong> <?= $distributor['nama_owner']; ?></p>
                                             <p><strong>Alamat:</strong> <?= $distributor['alamat']; ?></p>
 
@@ -128,10 +129,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<!-- JS dependencies for buttons -->
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <!-- JS dependencies for buttons -->
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script>
         // Setelah 5 detik, sembunyikan alert
         setTimeout(function () {
@@ -144,12 +145,12 @@
             $('#distributor-table').DataTable({
                 "ordering": true, // Enable sorting
                 "paging": true,   // Enable pagination
-                "searching": true, // Enable search
+                "searching": false, // Enable search
                 dom: 'Bfrtip', // Tambahkan dom untuk tombol
                 buttons: [
                     {
                         extend: 'excelHtml5',
-                        text: 'Export ke Excel',
+                        text: 'Export Excel',
                         className: 'btn btn-success',
                         title: 'Data Distributor',
                         exportOptions: {
@@ -177,7 +178,6 @@
                         table.row.add([
                             index + 1,
                             distributor.nama_distributor,
-                            distributor.kode_region,
                             distributor.nama_owner,
                             distributor.alamat,
                             '<a href="distributor/detail/' + distributor.kode_distributor + '" class="btn btn-info btn-sm">Detail</a> ' +
@@ -185,7 +185,7 @@
                             '<a href="distributor/delete/' + distributor.kode_distributor + '" class="btn btn-danger btn-sm" onclick="return confirm(\'Yakin ingin menghapus data?\');">Delete</a>'
                         ]).draw(false);
 
-                        
+
                     });
                     $('#total-distributor').text('Jumlah Distributor: ' + response.distributors.length);
                 }

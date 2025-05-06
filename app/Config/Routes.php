@@ -14,13 +14,14 @@ $routes->get('distributor/data', 'DistributorController::getData');
 $routes->get('distributor/datatable', 'DistributorController::datatable');
 
 $routes->get('distributor', 'DistributorController::DataListDitsributor');
+$routes->get('distributor/detail', 'DistributorController::DetailDitsributor/$1');
 
 
 $routes->get('distributor/create', 'DistributorController::create');
 $routes->post('distributor/store', 'DistributorController::store');
-$routes->get('distributor/edit/(:num)', 'DistributorController::edit/$1');
-$routes->post('distributor/update/(:num)', 'DistributorController::update/$1');
-$routes->get('distributor/delete/(:num)', 'DistributorController::delete/$1');
+$routes->get('distributor/edit/(:segment)', 'DistributorController::edit/$1');
+$routes->post('distributor/update/(:segment)', 'DistributorController::update/$1');
+$routes->get('distributor/delete/(:segment)', 'DistributorController::delete/$1');
 
 
 
